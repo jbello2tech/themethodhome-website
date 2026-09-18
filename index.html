@@ -415,6 +415,18 @@
   .region-card p{color:var(--ink-soft); font-size:.92rem; margin:0;}
   .region-email{display:inline-block; margin-top:1.1em; font-size:.92rem; font-weight:500; color:var(--accent-deep); text-decoration:none; border-bottom:1px solid var(--line);}
   .region-email:hover{border-color:var(--accent-deep);}
+
+  /* ---------- reviews ---------- */
+  .review-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  @media (max-width:860px){ .review-grid{grid-template-columns:1fr;} }
+  .review-card{background:var(--surface-raised); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:22px 24px;}
+  .review-stars{display:flex; gap:3px; margin-bottom:10px;}
+  .review-stars svg{width:15px; height:15px; fill:var(--accent-deep); stroke:none;}
+  .review-stars svg.empty{fill:var(--line);}
+  .review-text{color:var(--ink); font-size:.92rem; margin:0 0 12px;}
+  .review-meta{font-size:.8rem; color:var(--ink-soft); margin:0;}
+  .review-empty{color:var(--ink-soft); font-size:.94rem; background:var(--surface); border-radius:var(--radius-lg); padding:26px; grid-column:1/-1; text-align:center;}
+  .review-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-top:32px;}
   .area-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:1.4em;}
   .area-tags span{
     font-size:.82rem; font-weight:500; color:var(--ink-soft);
@@ -915,6 +927,23 @@
     </div>
   </section>
 
+  <section id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Client Reviews</p>
+        <h2>What clients are saying.</h2>
+        <p>Real feedback from projects in New York City and Orlando, FL.</p>
+      </div>
+      <div class="review-grid reveal" id="homeReviewList">
+        <p class="review-empty">Loading&hellip;</p>
+      </div>
+      <div class="review-ctas reveal">
+        <a class="btn btn-ghost" href="reviews/">Read All Reviews</a>
+        <a class="btn btn-primary" href="reviews/#reviewForm">Leave a Review</a>
+      </div>
+    </div>
+  </section>
+
   <section id="faq">
     <div class="wrap">
       <div class="section-head reveal">
@@ -1014,6 +1043,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="reviews/">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
     </ul>
@@ -1081,4 +1111,38 @@
     form.classList.add('hide');
     confirmBox.classList.add('show');
   });
+
+  (function(){
+    var list = document.getElementById('homeReviewList');
+    if (!list) return;
+    fetch('reviews.json', {cache: 'no-store'})
+      .then(function(res){ return res.json(); })
+      .then(function(reviews){
+        if (!reviews || !reviews.length){
+          list.innerHTML = '<p class="review-empty">No reviews yet &mdash; be the first to share your experience.</p>';
+          return;
+        }
+        list.innerHTML = reviews.slice(0, 3).map(function(r){
+          var stars = '';
+          for (var i = 1; i <= 5; i++){
+            stars += '<svg viewBox="0 0 24 24" class="' + (i <= r.rating ? '' : 'empty') + '"><polygon points="12 2 15.09 8.63 22 9.24 16.5 14.14 18.18 21 12 17.27 5.82 21 7.5 14.14 2 9.24 8.91 8.63"/></svg>';
+          }
+          var loc = r.location === 'FL' ? 'Orlando, FL' : 'New York, NY';
+          return '<div class="review-card">' +
+            '<div class="review-stars">' + stars + '</div>' +
+            '<p class="review-text">' + escapeHtml(r.text) + '</p>' +
+            '<p class="review-meta">' + escapeHtml(r.name) + ' &middot; ' + loc + '</p>' +
+          '</div>';
+        }).join('');
+      })
+      .catch(function(){
+        list.innerHTML = '<p class="review-empty">Reviews couldn’t be loaded right now.</p>';
+      });
+
+    function escapeHtml(str){
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+  })();
 </script>
