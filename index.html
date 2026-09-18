@@ -463,6 +463,10 @@
   .confirm h3{font-size:1.2rem; margin-bottom:.4em;}
   .confirm p{color:var(--ink-soft); font-size:.92rem; margin:0;}
   form.quote.hide{display:none;}
+  .honeypot{position:absolute; left:-9999px; top:-9999px; opacity:0; height:0; width:0;}
+  .form-msg{margin-top:14px; font-size:.88rem; display:none;}
+  .form-msg.show{display:block;}
+  .form-msg.err{color:#a3352c;}
 
   /* ---------- footer ---------- */
   footer{border-top:1px solid var(--line); padding:32px 0;}
@@ -826,7 +830,7 @@
         <p class="eyebrow">Get Started</p>
         <h2 class="section-head" style="margin-bottom:0;">Let&rsquo;s design your space.</h2>
         <p style="color:var(--ink-soft); margin-top:.9em; max-width:40ch;">Tell us about the room and we&rsquo;ll follow up with next steps and scheduling for your in-home walkthrough.</p>
-        <div class="contact-note">Direct email and phone details are being finalized. For now, this form is the fastest way to reach us, and we reply within one business day.</div>
+        <div class="contact-note">Prefer email? Reach us directly at the address for your area below. We reply within one business day.</div>
       </div>
 
       <div class="reveal">
@@ -840,6 +844,14 @@
               <label for="email">Email</label>
               <input id="email" name="email" type="email" required placeholder="jane@email.com">
             </div>
+          </div>
+          <div class="field">
+            <label for="location">Location</label>
+            <select id="location" name="location" required>
+              <option value="">Select one</option>
+              <option value="NY">New York City</option>
+              <option value="FL">Orlando, FL</option>
+            </select>
           </div>
           <div class="field-row">
             <div class="field">
@@ -864,7 +876,12 @@
             <label for="message">Tell us about the space</label>
             <textarea id="message" name="message" placeholder="Room size, current pain points, timeline..."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Send Request</button>
+          <div class="field honeypot" aria-hidden="true">
+            <label for="quoteWebsite">Website</label>
+            <input id="quoteWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn-primary" id="quoteSubmitBtn">Send Request</button>
+          <p class="form-msg" id="quoteMsg"></p>
         </form>
         <div class="confirm" id="confirmBox">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6"/><path d="M8 12.5l2.5 2.5L16 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -935,13 +952,60 @@
     }
   })();
 
-  document.getElementById('quoteForm').addEventListener('submit', function(ev){
-    ev.preventDefault();
-    var form = ev.target;
+  (function(){
+    var QUOTE_API = "https://themethodhome-reviews.the-method-home.workers.dev";
+    var form = document.getElementById('quoteForm');
     var confirmBox = document.getElementById('confirmBox');
-    form.classList.add('hide');
-    confirmBox.classList.add('show');
-  });
+    var msg = document.getElementById('quoteMsg');
+    var btn = document.getElementById('quoteSubmitBtn');
+
+    function showMsg(text){
+      msg.textContent = text;
+      msg.className = 'form-msg show err';
+    }
+
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+
+      var payload = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        location: document.getElementById('location').value,
+        spaceType: document.getElementById('space').value,
+        message: document.getElementById('message').value,
+        website: document.getElementById('quoteWebsite').value
+      };
+
+      if (!payload.location){
+        showMsg('Please select a location.');
+        return;
+      }
+
+      btn.disabled = true;
+      msg.classList.remove('show');
+
+      fetch(QUOTE_API + '/api/quote', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      })
+      .then(function(res){ return res.json().then(function(data){ return {ok: res.ok, data: data}; }); })
+      .then(function(result){
+        btn.disabled = false;
+        if (result.ok){
+          form.classList.add('hide');
+          confirmBox.classList.add('show');
+        } else {
+          showMsg(result.data.error || 'Something went wrong. Please try again.');
+        }
+      })
+      .catch(function(){
+        btn.disabled = false;
+        showMsg('Something went wrong. Please try again.');
+      });
+    });
+  })();
 
   (function(){
     var list = document.getElementById('homeReviewList');
