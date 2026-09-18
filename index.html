@@ -325,14 +325,16 @@
   /* ---------- mobile cta ---------- */
   .mobile-cta{
     display:none; position:fixed; left:0; right:0; bottom:0; z-index:15;
-    padding:12px clamp(20px,5vw,48px); background:var(--surface-raised);
+    padding:12px clamp(20px,5vw,48px) calc(12px + env(safe-area-inset-bottom, 0px));
+    background:var(--surface-raised);
     border-top:1px solid var(--line);
     box-shadow:0 -8px 24px -12px rgba(17,17,17,.15);
+    pointer-events:none;
   }
-  .mobile-cta .btn{width:100%; justify-content:center;}
+  .mobile-cta .btn{width:100%; justify-content:center; pointer-events:auto;}
   @media (max-width:760px){
     .mobile-cta{display:block;}
-    body{padding-bottom:78px;}
+    body{padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px));}
   }
 
   /* ---------- process ---------- */
@@ -925,7 +927,6 @@
       <li><a href="#process">Process</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="reviews/">Reviews</a></li>
-      <li><a href="#contact">Contact</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
     </ul>
     <div class="foot-emails">
