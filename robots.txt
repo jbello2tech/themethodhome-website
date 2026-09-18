@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin-reviews.html
+
+Sitemap: https://themethodhome.com/sitemap.xml
