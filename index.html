@@ -32,6 +32,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Work+Sans:wght@400;500;600&display=swap">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
   :root{
     --ground:#F3F3F1;
@@ -908,6 +909,7 @@
             <label for="quoteWebsite">Website</label>
             <input id="quoteWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
           </div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAE7TmF4uPYyalERN" style="margin-bottom:16px;"></div>
           <button type="submit" class="btn btn-primary" id="quoteSubmitBtn">Send Request</button>
           <p class="form-msg" id="quoteMsg"></p>
         </form>
@@ -994,6 +996,10 @@
     form.addEventListener('submit', function(ev){
       ev.preventDefault();
 
+      var turnstileToken = '';
+      var tsField = form.querySelector('[name="cf-turnstile-response"]');
+      if (tsField) turnstileToken = tsField.value;
+
       var payload = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
@@ -1001,7 +1007,8 @@
         location: document.getElementById('location').value,
         spaceType: document.getElementById('space').value,
         message: document.getElementById('message').value,
-        website: document.getElementById('quoteWebsite').value
+        website: document.getElementById('quoteWebsite').value,
+        turnstileToken: turnstileToken
       };
 
       if (!payload.location){
