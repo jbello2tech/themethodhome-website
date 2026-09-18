@@ -106,6 +106,7 @@
     max-width:1120px; margin:0 auto;
   }
   .wordmark{
+    display:flex; align-items:center; gap:14px;
     font-family:"Italiana", serif;
     font-weight:400;
     font-size:clamp(1.5rem, 3vw, 2.15rem);
@@ -114,6 +115,10 @@
     text-decoration:none;
     color:var(--ink);
     white-space:nowrap;
+  }
+  .wordmark-badge{
+    width:clamp(32px, 4vw, 44px); height:clamp(32px, 4vw, 44px);
+    border-radius:50%; object-fit:cover; flex-shrink:0;
   }
   .wordmark em{color:var(--accent-deep); font-style:normal;}
   .nav-links{display:flex; gap:clamp(16px,3vw,32px); align-items:center; list-style:none; margin:0; padding:0;}
@@ -473,7 +478,7 @@
 
 <header class="site">
   <nav class="nav">
-    <a class="wordmark" href="#top">The Method <em>Home</em></a>
+    <a class="wordmark" href="#top"><img src="nav-badge.png" class="wordmark-badge" alt="" width="44" height="44">The Method <em>Home</em></a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
