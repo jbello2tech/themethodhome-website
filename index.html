@@ -380,21 +380,31 @@
   .inspo-caption{margin-top:.8em; font-size:.82rem; color:var(--ink-soft); font-style:italic;}
 
   /* ---------- founder ---------- */
-  .founder-people{display:flex; flex-wrap:wrap; gap:clamp(28px,4vw,48px); margin-bottom:28px;}
-  .founder-person{display:flex; align-items:center; gap:20px;}
+  .founder-top{display:grid; grid-template-columns:auto 1fr; gap:clamp(24px,5vw,56px); align-items:center;}
+  .founder-stack{display:flex;}
   .founder-avatar{
     width:96px; height:96px; border-radius:50%;
     background:var(--accent-deep); color:#FFFFFF;
     display:flex; align-items:center; justify-content:center;
     font-family:"Italiana", serif; font-size:2rem;
-    box-shadow:var(--shadow); flex:none;
+    box-shadow:var(--shadow); flex:none; border:4px solid var(--ground);
   }
-  .founder-person h3{font-size:1.2rem;}
-  .founder-title{
-    color:var(--ink-soft); font-size:.86rem; font-weight:500;
-    margin:.25em 0 0; text-transform:uppercase; letter-spacing:.06em;
+  .founder-avatar + .founder-avatar{margin-left:-22px;}
+  .founder-avatar:nth-child(2){background:var(--accent);}
+  .founder-avatar:nth-child(3){background:var(--wood-deep);}
+  .founder-names{font-family:"Italiana", serif; font-size:1.35rem; margin:14px 0 0;}
+  .founder-names span{color:var(--ink-soft);}
+  .founder-bio{max-width:58ch; color:var(--ink-soft); margin:0; min-width:0;}
+  .founder-proof{display:grid; grid-template-columns:repeat(3,1fr); margin-top:40px; border-top:1px solid var(--line);}
+  .founder-proof div{padding:24px 24px 0 0; min-width:0;}
+  .founder-proof div + div{padding-left:24px; border-left:1px solid var(--line);}
+  .founder-proof b{display:block; font-family:"Italiana", serif; font-weight:400; font-size:clamp(2rem,4vw,2.6rem); line-height:1;}
+  .founder-proof small{display:block; color:var(--ink-soft); font-size:.88rem; margin-top:8px;}
+  @media (max-width:720px){
+    .founder-top{grid-template-columns:1fr;}
+    .founder-proof{grid-template-columns:1fr;}
+    .founder-proof div, .founder-proof div + div{padding:18px 0; border-left:0; border-bottom:1px solid var(--line);}
   }
-  .founder-bio{max-width:64ch; color:var(--ink-soft);}
 
   /* ---------- difference ---------- */
   .diff-wrap{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(32px,5vw,64px); align-items:stretch;}
@@ -730,31 +740,22 @@
         <p class="eyebrow">Who's Behind It</p>
         <h2>Meet the Founders.</h2>
       </div>
-      <div class="founder-people reveal">
-        <div class="founder-person">
-          <div class="founder-avatar" aria-hidden="true">JM</div>
-          <div>
-            <h3>Jimena Miguel</h3>
-            <p class="founder-title">Co-Founder</p>
+      <div class="founder-top reveal">
+        <div>
+          <div class="founder-stack" aria-hidden="true">
+            <div class="founder-avatar">JM</div>
+            <div class="founder-avatar">MM</div>
+            <div class="founder-avatar">AR</div>
           </div>
+          <p class="founder-names">Jimena, Michelle <span>&amp;</span> Adriana</p>
         </div>
-        <div class="founder-person">
-          <div class="founder-avatar" aria-hidden="true">MM</div>
-          <div>
-            <h3>Michelle Miguel</h3>
-            <p class="founder-title">Co-Founder</p>
-          </div>
-        </div>
-        <div class="founder-person">
-          <div class="founder-avatar" aria-hidden="true">AR</div>
-          <div>
-            <h3>Adriana Reyes</h3>
-            <p class="founder-title">Co-Founder</p>
-          </div>
-        </div>
+        <p class="founder-bio">Sisters Jimena and Michelle Miguel have spent their careers organizing homes for everyone from busy families to executives. Adriana Reyes spent hers designing systems that last. Together they built The Method Home so you get a fixed quote, a clear plan from walkthrough to install, and a space organized around what you already own.</p>
       </div>
-      <p class="founder-bio reveal">Sisters Jimena and Michelle Miguel have each spent eight years specializing in closet, pantry, and wardrobe organization, working with clients ranging from busy households to CEOs and executives. Together with co-founder Adriana Reyes, they started The Method Home to bring that same level of care, and the same fixed-quote transparency, to homes across New York City and Orlando, FL.</p>
-      <p class="founder-bio reveal">Adriana brings 19 years of experience in finance and consulting, more than a decade of it focused on sustainability, designing programs that reached tens of thousands of businesses. Her career has been about turning complex goals into systems that are clear, measurable, and built to last. At The Method Home, she applies that same mindset to the business: transparent fixed-quote pricing, a structured process from walkthrough to install, and a sustainable approach to organizing that designs around what you already own, reduces waste, and builds systems meant to last for years, not seasons.</p>
+      <div class="founder-proof reveal">
+        <div><b>16 yrs</b><small>Combined hands-on organizing experience</small></div>
+        <div><b>19 yrs</b><small>Designing systems in finance and sustainability</small></div>
+        <div><b>NYC &amp; FL</b><small>Serving the New York metro and Orlando</small></div>
+      </div>
     </div>
   </section>
 
