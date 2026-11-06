@@ -1,4 +1,17 @@
 (function(){
+  // On a refresh, always start at the top (ignore saved scroll and any #section in the address).
+  // Fresh visits to a shared link like /#contact still jump to that section.
+  var nav = window.performance && performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
+  var isReload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+  if (!isReload) return;
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  var top = function(){ window.scrollTo(0, 0); };
+  top();
+  window.addEventListener('load', function(){ top(); setTimeout(top, 0); });
+})();
+
+(function(){
   // mobile menu
   var toggle = document.getElementById('navToggle');
   var mobile = document.getElementById('navMobile');
