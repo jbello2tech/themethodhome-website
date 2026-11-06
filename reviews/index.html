@@ -294,7 +294,7 @@
       .then(function(res){ return res.json(); })
       .then(function(reviews){
         if (!reviews || !reviews.length){
-          list.innerHTML = '<p class="review-empty">No reviews yet &mdash; be the first to share your experience.</p>';
+          list.innerHTML = '<p class="review-empty">No reviews yet. Be the first to share your experience.</p>';
           return;
         }
         list.innerHTML = reviews.map(function(r){
