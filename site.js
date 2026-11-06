@@ -98,14 +98,18 @@
 })();
 
 (function(){
+  // Reviews stay hidden (section + nav links) until at least one is approved.
+  var gated = document.querySelectorAll('[data-reviews]');
   var list = document.getElementById('homeReviewList');
-  if (!list) return;
+  if (!gated.length && !list) return;
   function esc(s){ var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
   var star = '<polygon points="12 2 15.09 8.63 22 9.24 16.5 14.14 18.18 21 12 17.27 5.82 21 7.5 14.14 2 9.24 8.91 8.63"/>';
-  fetch('reviews.json', {cache:'no-store'})
+  fetch('/reviews.json', {cache:'no-store'})
     .then(function(res){ return res.json(); })
     .then(function(reviews){
       if (!reviews || !reviews.length) return;
+      gated.forEach(function(el){ el.hidden = false; });
+      if (!list) return;
       list.className = 'review-grid';
       list.innerHTML = reviews.slice(0, 3).map(function(r){
         var stars = '';
@@ -126,9 +130,24 @@
           });
         }
       });
-      document.getElementById('reviewCtas').hidden = false;
+      var ctas = document.getElementById('reviewCtas'); if (ctas) ctas.hidden = false;
     })
     .catch(function(){});
+})();
+
+(function(){
+  // Gentle fade-in for sections below the fold. Content above the fold is never hidden.
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = document.querySelectorAll('main section:not(.hero) .section-head, main section:not(.hero) .service-grid, main section:not(.hero) .process-list, main section:not(.hero) .svc-list, main section:not(.hero) .founder-card, main section:not(.hero) .proof, main section:not(.hero) .why, main section:not(.hero) .region-grid, main section:not(.hero) .faq-list, main section:not(.hero) .consult, .inspo-copy, #contact .wrap > *');
+  var vh = window.innerHeight;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
+  els.forEach(function(el){
+    if (el.getBoundingClientRect().top < vh) return;
+    el.classList.add('rv'); io.observe(el);
+  });
 })();
 (function(){
   var art = document.getElementById('closetArt');

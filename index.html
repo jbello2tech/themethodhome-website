@@ -98,7 +98,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Work+Sans:wght@400;500;600;700&display=swap">
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<link rel="stylesheet" href="/styles.css?v=3">
+<link rel="stylesheet" href="/styles.css?v=4">
 
 <header class="site">
   <nav class="nav wrap">
@@ -106,7 +106,7 @@
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
-      <li><a href="#reviews">Reviews</a></li>
+      <li data-reviews hidden><a href="#reviews">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact" class="nav-cta">Get a Free Quote</a></li>
     </ul>
@@ -116,7 +116,7 @@
     <a href="#services">Services</a>
     <a href="#process">Process</a>
     <a href="#service-area">Service Area</a>
-    <a href="#reviews">Reviews</a>
+    <a href="#reviews" data-reviews hidden>Reviews</a>
     <a href="#faq">FAQ</a>
     <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
   </div>
@@ -284,12 +284,12 @@
   </section>
 
   <section id="inspiration">
-    <div class="wrap inspo-wrap">
-      <figure class="inspo-photo"><img src="style-reference.jpg" loading="lazy" width="1086" height="1448" alt="A walk-in closet with hanging clothes, folded knitwear, handbags and shoe storage on white built-in shelving."></figure>
-      <div>
-        <p class="eyebrow">Finishes</p>
-        <h2 style="font-size:clamp(1.9rem,3.2vw,2.6rem);">Considered down to the hardware.</h2>
-        <p style="color:var(--ink-soft); margin-top:.9em; max-width:46ch;">Warm wood, soft neutrals and woven texture. Every project is finished to match your home, not a catalog default. A few finishes we use often:</p>
+    <div class="inspo-bleed">
+      <figure class="inspo-photo"><img src="style-reference.jpg" loading="lazy" width="1086" height="1448" alt="A walk-in closet by The Method Home with hanging clothes, folded knitwear, handbags and shoe storage on white built-in shelving."></figure>
+      <div class="inspo-copy">
+        <p class="eyebrow">From a recent project</p>
+        <h2>Considered down to the hardware.</h2>
+        <p class="inspo-lede">A walk-in we designed and installed: white built-ins, a place for every bag and every pair of shoes, and knitwear folded where you can see it. Every project is finished to match the home. A few finishes we use often:</p>
         <div class="finishes">
           <span class="finish"><i style="background:#C9A877"></i>Weathered Oak</span>
           <span class="finish"><i style="background:#6B4A30"></i>Warm Walnut</span>
@@ -357,7 +357,7 @@
     </div>
   </section>
 
-  <section id="reviews">
+  <section id="reviews" data-reviews hidden>
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Client reviews</p>
@@ -451,7 +451,7 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <p class="brand">The Method Home</p>
+        <p class="brand"><img src="/nav-badge.png" alt="" width="40" height="40">The Method Home</p>
         <p>Custom closet, pantry and home organization in New York City and Orlando, FL.</p>
       </div>
       <div>
@@ -484,4 +484,4 @@
   <a href="#service-area" class="btn btn-ghost" aria-label="Email us"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>Email</a>
 </div>
 
-<script src="/site.js?v=3" defer></script>
+<script src="/site.js?v=4" defer></script>

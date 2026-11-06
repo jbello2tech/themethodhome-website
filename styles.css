@@ -293,7 +293,6 @@
   .region-more{display:block; margin-top:.9em; font-size:.95rem; font-weight:600; color:var(--ink); text-decoration:none;}
   .region-more:hover{color:var(--wood-ink);}
   .band{background:var(--surface);}
-  .city #process{background:transparent;}
   .crumbs{font-size:.88rem; color:var(--ink-mute); margin:0 0 1.2em;}
   .crumbs a{color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--line);}
   .crumbs a:hover{color:var(--wood-ink);}
@@ -314,3 +313,49 @@
   .svc-list strong{font-weight:600;}
   .svc-list span{color:var(--ink-soft); font-size:.97rem;}
   .inline-link{font-weight:600; color:var(--wood-ink); white-space:nowrap;}
+
+  /* ---------- 2026-11 visual pass: contrast, bleed photo, dark footer, bigger type, reveal ---------- */
+  :root{ --night:#0D0D0D; --night-2:#1A1A1A; --night-line:#2E2E2E; --on-night:#FFFFFF; --on-night-soft:#C9C9C6; --on-night-mute:#9A9A98; }
+
+  .hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem); letter-spacing:0;}
+  .section-head h2, #contact h2{font-size:clamp(2rem,3.6vw,3.1rem);}
+
+  /* How it works on black */
+  #process{background:var(--night); color:var(--on-night);}
+  #process .section-head h2, #process .process-step h3{color:var(--on-night);}
+  #process .eyebrow{color:var(--wood);}
+  #process .eyebrow::before{background:var(--wood);}
+  #process .process-step p{color:var(--on-night-soft);}
+  #process .num{background:transparent; color:var(--wood); border-color:var(--wood);}
+  #process .process-list::before{background:var(--wood); opacity:.45;}
+
+  /* Project photo, edge to edge */
+  #inspiration{padding:0; background:var(--ground);}
+  .inspo-bleed{display:grid; grid-template-columns:1fr 1fr; align-items:stretch;}
+  #inspiration .inspo-photo{margin:0; border-radius:0; box-shadow:none; max-height:none; min-height:560px; overflow:hidden;}
+  #inspiration .inspo-photo img{width:100%; height:100%; object-fit:cover; object-position:center 40%;}
+  .inspo-copy{align-self:center; padding:clamp(48px,7vw,96px) max(20px, env(safe-area-inset-right,0px)) clamp(48px,7vw,96px) clamp(28px,6vw,80px); max-width:620px;}
+  .inspo-copy h2{font-size:clamp(2rem,3.6vw,3.1rem);}
+  .inspo-lede{color:var(--ink-soft); margin:.9em 0 0; max-width:46ch;}
+  @media (max-width:860px){
+    .inspo-bleed{grid-template-columns:1fr;}
+    #inspiration .inspo-photo{min-height:0; height:min(115vw, 560px);}
+    .inspo-copy{padding:44px max(20px, env(safe-area-inset-right,0px)) 56px max(20px, env(safe-area-inset-left,0px));}
+  }
+
+  #contact{background:var(--surface);}
+
+  /* Black footer */
+  footer{background:var(--night); border-top:0; color:var(--on-night-soft); padding-block:56px 40px;}
+  .foot h4{color:var(--on-night-mute);}
+  .foot p, .foot a{color:var(--on-night-soft);}
+  .foot a strong{color:var(--on-night); font-weight:600;}
+  .foot a:hover{color:var(--wood);}
+  .foot .brand{display:flex; align-items:center; gap:12px; color:var(--on-night); font-size:1.6rem;}
+  .foot .brand img{width:40px; height:40px; border-radius:50%; flex:none;}
+  .copy{border-top-color:var(--night-line); color:var(--on-night-mute);}
+  footer :focus-visible{outline-color:var(--wood);}
+
+  /* Fade-in below the fold (only ever added by script) */
+  .rv{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1);}
+  .rv.in{opacity:1; transform:none;}
