@@ -35,6 +35,7 @@
   "name": "The Method Home",
   "description": "Custom closet, pantry, and wardrobe organization serving New York City and Orlando, FL.",
   "url": "https://themethodhome.com/",
+  "telephone": "+1-917-480-9182",
   "areaServed": ["New York, NY", "Manhattan, NY", "Brooklyn, NY", "Queens, NY", "Orlando, FL", "Winter Park, FL", "Lake Nona, FL", "Dr. Phillips, FL", "Windermere, FL", "Baldwin Park, FL", "College Park, FL", "Oviedo, FL"]
 }
 </script>
@@ -366,7 +367,9 @@
   .mobile-bar.is-hidden{transform:translateY(110%);}
   .mobile-bar .btn{padding:.8em 1em; font-size:.9rem;}
   .mobile-bar .btn-primary{flex:1.6;}
-  .mobile-bar .btn-ghost{flex:1;}
+  .mobile-bar .btn-ghost{flex:1; padding-inline:.7em;}
+  .text-us{margin:1.6em 0 0; color:var(--ink-soft);}
+  .text-us a{font-weight:600; color:var(--wood-ink); text-decoration:none; border-bottom:1px solid var(--wood);}
   .mobile-bar svg{width:17px; height:17px;}
   @media (max-width:760px){ .mobile-bar{display:flex;} body{padding-bottom:84px;} }
   .nav-mobile{display:flex; flex-direction:column; padding-block:4px 18px; border-bottom:1px solid var(--line); background:var(--raised);}
@@ -693,6 +696,7 @@
           <li><b>2</b><span><strong>We schedule your free walkthrough</strong> at a time that works for you.</span></li>
           <li><b>3</b><span><strong>You get a fixed quote</strong> with a layout and finish options.</span></li>
         </ol>
+        <p class="text-us">Prefer to text? <a href="sms:+19174809182">(917) 480-9182</a></p>
       </div>
       <div class="form-card">
         <div class="tabs" role="tablist">
@@ -744,6 +748,7 @@
         <ul>
           <li><a href="mailto:InfoNY@themethodhome.com"><strong>New York:</strong> InfoNY@themethodhome.com</a></li>
           <li><a href="mailto:InfoFL@themethodhome.com"><strong>Orlando:</strong> InfoFL@themethodhome.com</a></li>
+          <li><a href="sms:+19174809182"><strong>Text:</strong> (917) 480-9182</a></li>
         </ul>
       </div>
       <div>
@@ -761,7 +766,8 @@
 </footer>
 
 <div class="mobile-bar" id="mobileBar">
-  <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+  <a href="#contact" class="btn btn-primary">Free Quote</a>
+  <a href="sms:+19174809182" class="btn btn-ghost" aria-label="Text us at (917) 480-9182"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Text</a>
   <a href="#service-area" class="btn btn-ghost" aria-label="Email us"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>Email</a>
 </div>
 
