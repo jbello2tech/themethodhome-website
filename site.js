@@ -152,7 +152,7 @@
   // Gentle fade-in for sections below the fold. Content above the fold is never hidden.
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var els = document.querySelectorAll('main section:not(.hero) .section-head, main section:not(.hero) .service-grid, main section:not(.hero) .process-list, main section:not(.hero) .svc-list, main section:not(.hero) .founder-card, main section:not(.hero) .proof, main section:not(.hero) .why, main section:not(.hero) .region-grid, main section:not(.hero) .faq-list, main section:not(.hero) .consult, .inspo-copy, #contact .wrap > *');
+  var els = document.querySelectorAll('main section:not(.hero) .section-head, main section:not(.hero) .service-grid, main section:not(.hero) .process-list, main section:not(.hero) .svc-list, main section:not(.hero) .founder-card, main section:not(.hero) .proof, main section:not(.hero) .why, main section:not(.hero) .region-grid, main section:not(.hero) .faq-list, main section:not(.hero) .consult, main section:not(.hero) .ba-pair, .ba-cta, .inspo-copy, #contact .wrap > *');
   var vh = window.innerHeight;
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
