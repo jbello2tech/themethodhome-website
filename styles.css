@@ -83,23 +83,23 @@
   /* animated closet (hero) */
   .organize{background:var(--raised); border:1px solid var(--line); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:clamp(20px,3.5vw,30px); max-width:480px; width:100%; justify-self:center;}
   .closet{display:block; width:100%; height:auto; overflow:visible;}
-  .closet .frame{fill:var(--ground); stroke:var(--ink); stroke-width:1.6;}
+  .closet .frame{fill:#F1E6D2; stroke:var(--ink); stroke-width:1.6;}
   .closet .line{fill:none; stroke:var(--ink); stroke-width:1.4;}
-  .closet .rod{fill:none; stroke:var(--wood-ink); stroke-width:3; stroke-linecap:round;}
+  .closet .rod{fill:none; stroke:#B08D52; stroke-width:3.4; stroke-linecap:round;}
   .closet .dim path{fill:none; stroke:var(--wood-ink); stroke-width:1; stroke-dasharray:400; stroke-dashoffset:0;}
   .closet .dim-bg{fill:var(--raised);}
   .closet .dim text{font:600 11px var(--body); fill:var(--wood-ink); text-anchor:middle; letter-spacing:.04em;}
-  .closet .box{fill:#E9DCC6; stroke:var(--ink); stroke-width:1.2;}
-  .closet .box2{fill:var(--raised); stroke:var(--ink); stroke-width:1.2;}
-  .closet .hanger{fill:none; stroke:var(--ink); stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round;}
+  .closet .box{fill:#1A1A1A; stroke:var(--ink); stroke-width:1.2;}
+  .closet .box2{fill:#C9A877; stroke:var(--ink); stroke-width:1.2;}
+  .closet .hanger{fill:none; stroke:#B08D52; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
   .closet .g, .closet .fold{stroke:var(--ink); stroke-width:1.2;}
   .closet .c-walnut{fill:#6B4A30;} .closet .c-oak{fill:#C9A877;} .closet .c-greige{fill:#C9C2B3;}
   .closet .c-white{fill:#FBFAF7;} .closet .c-black{fill:#1A1A1A;}
   .closet .basket{fill:#DCC4A0; stroke:var(--ink); stroke-width:1.2;}
   .closet .weave{fill:none; stroke:#A9835A; stroke-width:1;}
-  .closet .drawer{fill:var(--raised); stroke:var(--ink); stroke-width:1.2;}
-  .closet .pull{stroke:#B08D52; stroke-width:3; stroke-linecap:round;}
-  .closet .shoe{fill:var(--ink);} .closet .shoe.alt{fill:#A9835A;}
+  .closet .drawer{fill:#6B4A30; stroke:var(--ink); stroke-width:1.2;}
+  .closet .pull{stroke:#D9B676; stroke-width:3.4; stroke-linecap:round;}
+  .closet .shoe{fill:var(--ink);} .closet .shoe.alt{fill:#6B4A30;}
   .closet .tag{fill:var(--raised); stroke:var(--wood-ink); stroke-width:1;}
   .closet .tag-t{font:700 7px var(--body); fill:var(--wood-ink); text-anchor:middle; letter-spacing:.08em;}
 
