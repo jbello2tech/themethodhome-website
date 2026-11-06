@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin-reviews.html
+Disallow: /admin-estimates.html
+Disallow: /estimate/
 
 Sitemap: https://themethodhome.com/sitemap.xml
